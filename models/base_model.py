@@ -8,9 +8,17 @@ class BaseModel:
     """BaseModel class"""
     def __init__(self, *args, **kwargs):
         """Initializing the BaseModel instance"""
-        self.id = str(uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = self.created_at
+        if kwargs is not None and kwargs != {}:
+            for key, val in kwargs.items():
+                if key != "__class__":
+                    if key in ('created_at', 'updated_at'):
+                        setattr(self, key, datetime.fromisoformat(val))
+                    else:
+                        setattr(self, key, val)
+        else:
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = self.created_at
 
     def __str__(self):
         """returns string representation"""
