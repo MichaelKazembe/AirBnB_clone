@@ -35,3 +35,22 @@ class FileStorage:
                 FileStorage.__objects = diction
         except FileNotFoundError:
             return
+
+    def classes(self):
+        """dictionary containging key/value pairs of classes"""
+        from models.base_model import BaseModel
+        from models.amenity import Amenity
+        from models.city import City
+        from models.place import Place
+        from models.review import Review
+        from models.state import State
+        from models.user import User
+
+        classes = {"BaseModel": BaseModel,
+                   "Amenity": Amenity,
+                   "City": City,
+                   "Place": Place,
+                   "Review": Review,
+                   "State": State,
+                   "User": User}
+        return classes

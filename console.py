@@ -82,5 +82,13 @@ class HBNBCommand(cmd.Cmd):
             strform = [str(obj) for key, obj in storage.all().items()]
             print(strform)
 
+    def do_update(self, line):
+        """
+        Updates an instance based on class name and id
+        by adding or updating attribut
+        then save it to JSON file
+        """
+
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
