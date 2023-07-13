@@ -82,5 +82,5 @@ class HBNBCommand(cmd.Cmd):
             strform = [str(obj) for key, obj in storage.all().items()]
             print(strform)
 
-    if __name__ == '__main__':
-        HBNBCommand().cmdloop()
+if __name__ == '__main__':
+    HBNBCommand().cmdloop()

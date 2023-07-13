@@ -6,6 +6,7 @@ import os
 
 class FileStorage:
     """FileStorage class"""
+
     __file_path = "file.json"
     __objects = {}
 
@@ -26,8 +27,11 @@ class FileStorage:
 
     def reload(self):
         """deserialize JSON file to __objects"""
-        with open(FileStorage.__file_path, 'r', encoding="utf-8") as f:
-            diction = json.load(f)
-            diction = {key: self.classes()[value["__class__"]]
-                       (**value) for key, value in diction.items()}
-            FileStorage.__objects = diction
+        try:
+            with open(FileStorage.__file_path, 'r', encoding="utf-8") as f:
+                diction = json.load(f)
+                diction = {key: self.classes()[value["__class__"]]
+                           (**value) for key, value in diction.items()}
+                FileStorage.__objects = diction
+        except FileNotFoundError:
+            return
