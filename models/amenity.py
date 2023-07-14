@@ -7,7 +7,3 @@ class Amenity(BaseModel):
     """class Amenity inherting from BaseModel"""
 
     name = ""
-
-    def __init__(self, *args, **kwargs):
-        """overriding"""
-        super().__init__(*args, **kwargs)

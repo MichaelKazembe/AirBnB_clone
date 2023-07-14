@@ -2,13 +2,13 @@
 """BaseModel module"""
 from uuid import uuid4
 from datetime import datetime
-from models import storage
 
 
 class BaseModel:
     """BaseModel class"""
     def __init__(self, *args, **kwargs):
         """Initializing the BaseModel instance"""
+        from models import storage
         if kwargs is not None and kwargs != {}:
             for key, val in kwargs.items():
                 if key != "__class__":
@@ -24,11 +24,13 @@ class BaseModel:
 
     def __str__(self):
         """returns string representation"""
-        return "[{}] ({}) {}".\
-            format(type(self).__name__, self.id, self.__dict__)
+        from models import storage
+        return "[{}] ({}) {}".format(type(self).__name__,
+                                     self.id, self.__dict__)
 
     def save(self):
         """updates updated_at attribute with current datetime"""
+        from models import storage
         self.updated_at = datetime.now()
         storage.save()
 

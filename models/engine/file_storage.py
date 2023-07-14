@@ -1,14 +1,29 @@
 #!/usr/bin/python3
 """ file_storage module"""
 import json
-import os
+from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class FileStorage:
-    """FileStorage class"""
+    """ serializes and deserialzes json files """
 
     __file_path = "file.json"
     __objects = {}
+    classes = {
+        "BaseModel": BaseModel,
+        "User": User,
+        "State": State,
+        "City": City,
+        "Amenity": Amenity,
+        "Place": Place,
+        "Review": Review
+    }
 
     def all(self):
         """returns all stores basemodel objects"""
@@ -30,26 +45,8 @@ class FileStorage:
         try:
             with open(FileStorage.__file_path, 'r', encoding="utf-8") as f:
                 diction = json.load(f)
-                diction = {key: self.classes()[value["__class__"]]
+                diction = {key: self.classes[value["__class__"]]
                            (**value) for key, value in diction.items()}
                 FileStorage.__objects = diction
         except FileNotFoundError:
             return
-
-    def classes(self):
-        """dictionary containing key/value pairs of classes"""
-        from models.base_model import BaseModel
-        from models.user import User
-        from models.state import State
-        from models.city import City
-        from models.amenity import Amenity
-        from models.place import Place
-        from models.review import Review
-        classes = {"BaseModel": BaseModel,
-                   "Amenity": Amenity,
-                   "City": City,
-                   "Place": Place,
-                   "Review": Review,
-                   "State": State,
-                   "User": User}
-        return classes

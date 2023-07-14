@@ -1,14 +1,23 @@
 #!/usr/bin/python3
 """Entry to command interpreter"""
+
 import cmd
 from models import storage
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
-    """entry point of HBNB console"""
+    """Entry point of HBNB console"""
 
     prompt = "(hbnb) "
+    classes = {"BaseModel", "State", "City",
+               "Amenity", "Place", "Review", "User"}
 
     def do_quit(self, arg):
         """Exits the program"""
@@ -26,10 +35,10 @@ class HBNBCommand(cmd.Cmd):
         """command to create instance of basemodel"""
         if arg == "" or arg is None:
             print("** class name missing **")
-        elif arg not in storage.classes():
+        elif arg not in storage.classes:
             print("** class doesn't exist **")
         else:
-            obj = storage.classes()[arg]()
+            obj = storage.classes[arg]()
             obj.save()
             print(obj.id)
 
@@ -39,7 +48,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             argv = arg.split(' ')
-            if argv[0] not in storage.classes():
+            if argv[0] not in storage.classes:
                 print("** class doesn't exist **")
             elif len(argv) < 2:
                 print("** instance id missing **")
@@ -56,7 +65,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             argv = arg.split(' ')
-            if argv[0] not in storage.classes():
+            if argv[0] not in storage.classes:
                 print("** class doesn't exist **")
             elif len(argv) < 2:
                 print("** instance id missing **")
@@ -72,7 +81,7 @@ class HBNBCommand(cmd.Cmd):
         """ prints string representation of all instances """
         if arg != "":
             argv = arg.split(" ")
-            if argv[0] not in storage.classes():
+            if argv[0] not in storage.classes:
                 print("** class doesn't exist **")
             else:
                 strform = [str(obj) for key, obj in storage.all().items()
@@ -92,7 +101,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             argv = arg.split(' ')
-            if argv[0] not in storage.classes():
+            if argv[0] not in storage.classes:
                 print("** class doesn't exist **")
             elif len(argv) < 2:
                 print("** instance id missing **")
@@ -110,6 +119,66 @@ class HBNBCommand(cmd.Cmd):
                     obj.save()
                 else:
                     print("** no instance found **")
+
+    def do_count(self, arg):
+        """Retrieve the number of instances of a class"""
+        if arg == "" or arg is None:
+            print("** class name missing **")
+        else:
+            argv = arg.split(' ')
+            if argv[0] not in storage.classes:
+                print("** class doesn't exist **")
+            else:
+                count = len(storage.all())
+                instances = [obj for obj in storage.all().values()
+                             if type(obj).__name__ == argv[0]]
+                print(len(instances))
+
+    def default(self, arg):
+        """Accepts class name followed by an arguement"""
+        argv = arg.split('.')
+        arg = argv[0]
+        if len(argv) == 1:
+            print("*** Unknown syntax: {}".format(arg))
+            return
+        try:
+            argv = argv[1].split('(')
+            command = argv[0]
+            if command == 'all':
+                HBNBCommand.do_all(self, arg)
+            elif command == 'count':
+                HBNBCommand.do_count(self, arg)
+            elif command == 'show':
+                argv = argv[1].split(')')
+                id_arg = argv[0]
+                id_arg = id_arg.strip("'")
+                id_arg = id_arg.strip('"')
+                arg = arg + ' ' + id_arg
+                HBNBCommand.do_show(self, arg)
+            elif command == 'destroy':
+                argv = argv[1].split(')')
+                id_arg = argv[0]
+                id_arg = id_arg.strip('"')
+                id_arg = id_arg.strip("'")
+                arg = arg + ' ' + id_arg
+                HBNBCommand.do_destroy(self, arg)
+            elif command == 'update':
+                argv = argv[1].split(',')
+                id_arg = argv[0].strip("'")
+                id_arg = id_arg.strip('"')
+                name_arg = argv[1].strip(',')
+                val_arg = argv[2]
+                name_arg = name_arg.strip(' ')
+                name_arg = name_arg.strip("'")
+                name_arg = name_arg.strip('"')
+                val_arg = val_arg.strip(' ')
+                val_arg = val_arg.strip(')')
+                arg = arg + ' ' + id_arg + ' ' + name_arg + ' ' + val_arg
+                HBNBCommand.do_update(self, arg)
+            else:
+                print("*** Unknown syntax: {}".format(arg))
+        except IndexError:
+            print("*** Unknown syntax: {}".format(arg))
 
 
 if __name__ == '__main__':
