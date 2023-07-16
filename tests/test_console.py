@@ -10,7 +10,7 @@ from console import HBNBCommand
 
 
 class TestHBNBCommand(TestCase):
-    """tests for the console, quit and empty"""
+    """Tests for the console, quit and empty"""
 
     def setUp(self):
         self.console = HBNBCommand()
