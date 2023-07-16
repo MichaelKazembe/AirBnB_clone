@@ -5,3 +5,8 @@ import os
 import console
 from console import HBNBCommand
 from io import StringIO
+
+
+class TestConsole(unittest.TestCase):
+    """tests for the console, quit and empty"""
+  
