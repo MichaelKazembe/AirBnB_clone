@@ -30,6 +30,12 @@ class Testcity(unittest.TestCase):
         """Test for docstrings"""
         self.assertIsNotNone(City.__doc__)
 
+    def test_pep8_city(self):
+        """tests pep8"""
+        style = pep8.StyleGuide(quiet=True)
+        p = style.check_files(['models/city.py'])
+        self.assertEqual(p.total_errors, 0, "fix pep8")
+
     def test_subclass_city(self):
         """Test if city inherited from BaseModel"""
         self.assertTrue(issubclass(self.city1.__class__, BaseModel), True)

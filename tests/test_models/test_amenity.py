@@ -2,6 +2,7 @@
 """Tests for Amenity"""
 import unittest
 import os
+import pep8
 from models.amenity import Amenity
 from models.base_model import BaseModel
 
@@ -27,6 +28,12 @@ class TestAmenity(unittest.TestCase):
     def test_docstring_Amenity(self):
         """Test for docstrings"""
         self.assertIsNotNone(Amenity.__doc__)
+
+    def test_pep8_Amenity(self):
+        """Tests pep8"""
+        style = pep8.StyleGuide(quiet=True)
+        p = style.check_files(['models/amenity.py'])
+        self.assertEqual(p.total_errors, 0, "fix pep8")
 
     def test_attribute_Amenity(self):
         """Test for attributes in Amenity"""

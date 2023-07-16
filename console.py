@@ -43,7 +43,7 @@ class HBNBCommand(cmd.Cmd):
             print(obj.id)
 
     def do_show(self, arg):
-        """ Prints string representation of an instance"""
+        """Prints string representation of an instance"""
         if arg == "" or arg is None:
             print("** class name missing **")
         else:
@@ -78,7 +78,7 @@ class HBNBCommand(cmd.Cmd):
                     storage.save()
 
     def do_all(self, arg):
-        """ prints string representation of all instances """
+        """Prints string representation of all instances"""
         if arg != "":
             argv = arg.split(" ")
             if argv[0] not in storage.classes:
@@ -135,7 +135,7 @@ class HBNBCommand(cmd.Cmd):
                 print(len(instances))
 
     def default(self, arg):
-        """Accepts class name followed by an arguement"""
+        """Accepts class name followed by an argument"""
         argv = arg.split('.')
         arg = argv[0]
         if len(argv) == 1:
@@ -145,23 +145,23 @@ class HBNBCommand(cmd.Cmd):
             argv = argv[1].split('(')
             command = argv[0]
             if command == 'all':
-                HBNBCommand.do_all(self, arg)
+                self.do_all(arg)
             elif command == 'count':
-                HBNBCommand.do_count(self, arg)
+                self.do_count(arg)
             elif command == 'show':
                 argv = argv[1].split(')')
                 id_arg = argv[0]
                 id_arg = id_arg.strip("'")
                 id_arg = id_arg.strip('"')
                 arg = arg + ' ' + id_arg
-                HBNBCommand.do_show(self, arg)
+                self.do_show(arg)
             elif command == 'destroy':
                 argv = argv[1].split(')')
                 id_arg = argv[0]
                 id_arg = id_arg.strip('"')
                 id_arg = id_arg.strip("'")
                 arg = arg + ' ' + id_arg
-                HBNBCommand.do_destroy(self, arg)
+                self.do_destroy(arg)
             elif command == 'update':
                 argv = argv[1].split(',')
                 id_arg = argv[0].strip("'")
@@ -174,7 +174,7 @@ class HBNBCommand(cmd.Cmd):
                 val_arg = val_arg.strip(' ')
                 val_arg = val_arg.strip(')')
                 arg = arg + ' ' + id_arg + ' ' + name_arg + ' ' + val_arg
-                HBNBCommand.do_update(self, arg)
+                self.do_update(arg)
             else:
                 print("*** Unknown syntax: {}".format(arg))
         except IndexError:

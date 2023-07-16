@@ -29,6 +29,12 @@ class Teststate(unittest.TestCase):
         """Test for docstrings"""
         self.assertIsNotNone(State.__doc__)
 
+    def test_pep8_state(self):
+        """checks for pep8"""
+        style = pep8.StyleGuide(quiet=True)
+        p = style.check_files(['models/state.py'])
+        self.assertEqual(p.total_errors, 0, "fix pep8")
+
     def test_subclass_state(self):
         """Test if state inherited from BaseModel"""
         self.assertTrue(issubclass(self.state1.__class__, BaseModel), True)

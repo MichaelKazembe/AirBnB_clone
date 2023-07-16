@@ -32,6 +32,12 @@ class Testuser(unittest.TestCase):
         """Test for docstrings"""
         self.assertIsNotNone(User.__doc__)
 
+    def test_pep8_user(self):
+        """tests pep8"""
+        style = pep8.StyleGuide(quiet=True)
+        p = style.check_files(['models/user.py'])
+        self.assertEqual(p.total_errors, 0, "fix pep8")
+
     def test_subclass_user(self):
         """Test if user inherited from BaseModel"""
         self.assertTrue(issubclass(self.user1.__class__, BaseModel), True)

@@ -39,6 +39,12 @@ class TestPlace(unittest.TestCase):
         """Test for docstrings"""
         self.assertIsNotNone(Place.__doc__)
 
+    def test_pep8_place(self):
+        """tests pep8"""
+        style = pep8.StyleGuide(quiet=True)
+        p = style.check_files(['models/place.py'])
+        self.assertEqual(p.total_errors, 0, "fix pep8")
+
     def test_subclass_place(self):
         """Test if Place inherited from BaseModel"""
         self.assertTrue(issubclass(self.place1.__class__, BaseModel), True)
