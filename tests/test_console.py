@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 """Tests for Command Console"""
 import unittest
+from unittest.mock import patch
 import os
 import console
 from console import HBNBCommand
 from io import StringIO
-from unittest.mock import patch
 
 
 class TestConsole(unittest.TestCase):
