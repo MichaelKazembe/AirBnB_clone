@@ -4,6 +4,7 @@ import unittest
 from unittest.mock import patch
 import os
 import console
+import tests
 from console import HBNBCommand
 from io import StringIO
 
