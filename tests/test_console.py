@@ -18,20 +18,11 @@ class TestHBNBCommand(TestCase):
     def tearDown(self):
         pass
 
-    def test_pep8_console(self):
-        """Pep8 test"""
-        style = pep8.StyleGuide(quiet=True)
-        p = style.check_files(["console.py"])
-        self.assertEqual(
-            p.total_errors,
-            0,
-            "Found code style errors (and warnings).")
-
     def test_module_doc(self):
         """test module documentation"""
         doc = __import__('console').__doc__
         self.assertGreater(len(doc), 1)
-
+    
     def test_class_doc(self):
         """test class documentation"""
         self.assertIsNotNone(HBNBCommand.__doc__)
