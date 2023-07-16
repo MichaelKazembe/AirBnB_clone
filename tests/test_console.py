@@ -5,7 +5,6 @@ import os
 import console
 from console import HBNBCommand
 from io import StringIO
-from io import StringIO
 from unittest.mock import patch
 
 
