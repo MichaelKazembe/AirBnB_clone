@@ -31,6 +31,12 @@ class TestReview(unittest.TestCase):
         """Test for docstrings"""
         self.assertIsNotNone(Review.__doc__)
 
+    def test_pep8_review(self):
+        """tests pep8"""
+        style = pep8.StyleGuide(quiet=True)
+        p = style.check_files(['models/review.py'])
+        self.assertEqual(p.total_errors, 0, "fix pep8")
+
     def test_subclass_Review(self):
         """Test if Review inherited from BaseModel"""
         self.assertTrue(issubclass(self.review1.__class__, BaseModel), True)

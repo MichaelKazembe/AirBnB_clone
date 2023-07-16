@@ -31,6 +31,12 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsNotNone(BaseModel.save.__doc__)
         self.assertIsNotNone(BaseModel.to_dict.__doc__)
 
+    def test_pep8_base1(self):
+        """tests pep8"""
+        style = pep8.StyleGuide(quiet=True)
+        p = style.check_files(['models/base_model.py'])
+        self.assertEqual(p.total_errors, 0, "fix pep8")
+
     def test_init_(self):
         """Test for init"""
         self.assertTrue(isinstance(self.base1, BaseModel))
