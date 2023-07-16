@@ -15,4 +15,8 @@ class TestConsole(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         """setup console class for test"""
+
+    @classmethod
+    def teardown(cls):
+        """tears down console class"""
   
