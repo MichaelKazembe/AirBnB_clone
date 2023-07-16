@@ -2,3 +2,4 @@
 """Tests for Command Console"""
 import unittest
 import os
+from console import HBNBCommand
