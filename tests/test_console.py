@@ -9,4 +9,8 @@ from io import StringIO
 
 class TestConsole(unittest.TestCase):
     """tests for the console, quit and empty"""
+
+    @classmethod
+    def setUpClass(cls):
+        """setup console class for test"""
   
