@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Tests for Command Console"""
+"""Tests for Console"""
 import unittest
 from unittest.mock import patch
 import os
