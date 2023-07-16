@@ -3,3 +3,4 @@
 import unittest
 import os
 from console import HBNBCommand
+from io import StringIO
