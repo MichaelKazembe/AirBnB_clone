@@ -36,10 +36,10 @@ class HBNBCommand(cmd.Cmd):
         """command to create instance of basemodel"""
         if arg == "" or arg is None:
             print("** class name missing **")
-        elif arg not in HBNBCommand.classes:
+        elif arg not in storage.classes:
             print("** class doesn't exist **")
         else:
-            obj = HBNBCommand.classes[arg]()
+            obj = storage.classes[arg]()
             obj.save()
             print(obj.id)
 
@@ -49,7 +49,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             argv = arg.split(' ')
-            if argv[0] not in HBNBCommand.classes:
+            if argv[0] not in storage.classes:
                 print("** class doesn't exist **")
             elif len(argv) < 2:
                 print("** instance id missing **")
@@ -66,7 +66,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             argv = arg.split(' ')
-            if argv[0] not in HBNBCommand.classes:
+            if argv[0] not in storage.classes:
                 print("** class doesn't exist **")
             elif len(argv) < 2:
                 print("** instance id missing **")
@@ -82,7 +82,7 @@ class HBNBCommand(cmd.Cmd):
         """Prints string representation of all instances"""
         if arg != "":
             argv = arg.split(" ")
-            if argv[0] not in HBNBCommand.classes:
+            if argv[0] not in storage.classes:
                 print("** class doesn't exist **")
             else:
                 strform = [str(obj) for key, obj in storage.all().items()
@@ -102,7 +102,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             argv = arg.split(' ')
-            if argv[0] not in HBNBCommand.classes:
+            if argv[0] not in storage.classes:
                 print("** class doesn't exist **")
             elif len(argv) < 2:
                 print("** instance id missing **")
@@ -127,7 +127,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             argv = arg.split(' ')
-            if argv[0] not in HBNBCommand.classes:
+            if argv[0] not in storage.classes:
                 print("** class doesn't exist **")
             else:
                 count = len(storage.all())
@@ -137,12 +137,14 @@ class HBNBCommand(cmd.Cmd):
 
     def dict_strip(self, st):
         """tries to find a dict while stripping"""
-        newstring = st[st.find("(") + 1 : st.rfind(")")]
+        newstring = st[st.find("(") + 1: st.rfind(")")]
+
         try:
-            newdict = newstring[newstring.find("{") + 1 : newstring.rfind("}")]
+            newdict = newstring[newstring.find("{") + 1: newstring.rfind("}")]
             stripped_dict = eval("{" + newdict + "}")
             return stripped_dict
-        except:
+
+        except ValueError:
             return None
 
     def default(self, arg):
