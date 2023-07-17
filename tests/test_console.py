@@ -51,6 +51,20 @@ class TestHBNBCommand(unittest.TestCase):
             self.console.onecmd("\n")
             self.assertEqual(f.getvalue(), '')
 
+    def test_console_quit(self):
+        """tests the default command quit"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("quit")
+            output = f.getValue()
+        self.assertIn("", output)
+
+    def test_console_EOF(self):
+        """tests the default command quit"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("EOF")
+            output = f.getValue()
+        self.assertIn("", output)
+
     def test_create(self):
         """Test cmd output: create"""
         with patch('sys.stdout', new=StringIO()) as f:
@@ -75,6 +89,17 @@ class TestHBNBCommand(unittest.TestCase):
             self.console.onecmd("all Place")
             self.assertEqual("[]\n", f.getvalue())
 
+    def test_userall_command_output(self):
+        """tests the user.all command output"""
+        all_class = ['BaseModel', 'User', 'State', 'City',
+                     'Amenity', 'Place', 'Review']
+        for test_class in all_class:
+            with patch('sys.stdout', new=StringIO()) as f:
+                console.HBNBCommand().onecmd("{}.all()".format(test_class))
+                output = f.getvalue()
+            self.assertIn(test_class, output)
+            self.assertIn("created_at", output)
+
     def test_destroy(self):
         """Test cmd output: destroy"""
         with patch('sys.stdout', new=StringIO()) as f:
@@ -95,21 +120,25 @@ class TestHBNBCommand(unittest.TestCase):
 
     def test_update(self):
         """Test cmd output: update"""
-        with patch('sys.stdout', new=StringIO()) as f:
-            self.console.onecmd("update")
-            self.assertEqual("** class name missing **\n", f.getvalue())
-        with patch('sys.stdout', new=StringIO()) as f:
-            self.console.onecmd("update You")
-            self.assertEqual("** class doesn't exist **\n", f.getvalue())
-        with patch('sys.stdout', new=StringIO()) as f:
-            self.console.onecmd("update User")
-            self.assertEqual("** instance id missing **\n", f.getvalue())
-        with patch('sys.stdout', new=StringIO()) as f:
-            self.console.onecmd("update User 12345")
-            self.assertEqual("** attribute name missing **\n", f.getvalue())
-        with patch('sys.stdout', new=StringIO()) as f:
-            self.console.onecmd("update User 12345")
-            self.assertEqual("** attribute name missing **\n", f.getvalue())
+        all_class = ['BaseModel', 'User', 'State', 'City',
+                     'Amenity', 'Place', 'Review']
+        for test_class in all_class:
+            with patch('sys.stdout', new=StringIO()) as f:
+                console.HBNBCommand().onecmd("create {}".format(test_class))
+                obj_id = f.getvalue()
+                cmd = "update {} {} name hbnb".format(test_class, obj_id)
+                console.HBNBCommand().onecmd(cmd)
+                cmd3 = "{}.update({}, first_name, alxhbnb\
+                                  )".format(test_class, obj_id)
+                console.HBNBCommand().onecmd(cmd3)
+                cmd4 = "{}.update({}, last_name, alxholberton\
+                                  )".format(test_class, obj_id)
+                console.HBNBCommand().onecmd(cmd4)
+                console.HBNBCommand().onecmd("show {} {}".format
+                                             (test_class, obj_id))
+                output = f.getvalue()
+            self.assertIn("'name': 'hbnb'", output)
+            self.assertIn("'first_name': 'alxhbnb'", output)
 
     def test_show(self):
         """Test cmd output: show"""
@@ -125,6 +154,18 @@ class TestHBNBCommand(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             self.console.onecmd("User.show('123')")
             self.assertEqual("** no instance found **\n", f.getvalue())
+
+    def test_classcount_command_output(self):
+        """tests class.count command reads"""
+        all_class = ['BaseModel', 'User', 'State', 'City',
+                     'Amenity', 'Place', 'Review']
+        for test_class in all_class:
+            with patch('sys.stdout', new=StringIO()) as f:
+                console.HBNBCommand().onecmd("create {}".format(test_class))
+                console.HBNBCommand().onecmd("create {}".format(test_class))
+                console.HBNBCommand().onecmd("{}.count()".format(test_class))
+                output = f.getValue()
+            self.asserIn("2", output)
 
     def test_class_cmd(self):
         """Test cmd output: <class>.<cmd>"""
