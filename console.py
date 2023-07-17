@@ -106,18 +106,14 @@ class HBNBCommand(cmd.Cmd):
             elif len(argv) < 4:
                 print("** value missing **")
             else:
-                try:
-                    storage.reload()
-                    objs = storage.all()
-                    key = "{}.{}".format(argv[0], argv[1])
-                    obj = objs[key]
-                    try:
-                        Type = type(obj.__dict__[argv[2]])
-                        obj.__dict__[argv[2]] = Type(argv[3].strip("\""))
-                    except KeyError:
-                        obj.__dict__[argv[2]] = argv[3].strip("\"")
+                key = "{}.{}".format(argv[0], argv[1])
+                if key in storage.all():
+                    obj = storage.all()[key]
+                    attr_name = argv[2]
+                    attr_value = argv[3]
+                    setattr(obj, attr_name, attr_value)
                     obj.save()
-                except KeyError:
+                else:
                     print("** no instance found **")
 
     def do_count(self, arg):
