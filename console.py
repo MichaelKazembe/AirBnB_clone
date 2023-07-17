@@ -129,18 +129,6 @@ class HBNBCommand(cmd.Cmd):
                              if type(obj).__name__ == argv[0]]
                 print(len(instances))
 
-    def dict_strip(self, st):
-        """tries to find a dict while stripping"""
-        newstring = st[st.find("(") + 1: st.rfind(")")]
-
-        try:
-            newdict = newstring[newstring.find("{") + 1: newstring.rfind("}")]
-            stripped_dict = eval("{" + newdict + "}")
-            return stripped_dict
-
-        except ValueError:
-            return None
-
     def default(self, arg):
         """Accepts class name followed by an argument"""
         argv = arg.split('.')
