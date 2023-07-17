@@ -27,7 +27,7 @@ class FileStorage:
 
     def all(self):
         """returns all stores basemodel objects"""
-        return self.__objects
+        return FileStorage.__objects
 
     def new(self, obj):
         """adding new object to objects dictionary"""
@@ -35,9 +35,9 @@ class FileStorage:
 
     def save(self):
         """save objects dictionary to file"""
-        with open(self.__file_path, 'w') as f:
+        with open(FileStorage.__file_path, 'w') as f:
             diction = {key: value.to_dict() for key, value
-                       in self.__objects.items()}
+                       in FileStorage.__objects.items()}
             json.dump(diction, f)
 
     def reload(self):

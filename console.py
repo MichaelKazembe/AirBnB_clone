@@ -11,8 +11,8 @@ class HBNBCommand(cmd.Cmd):
     """Entry point of HBNB console"""
 
     prompt = "(hbnb) "
-    classes = {"BaseModel", "State", "City",
-               "Amenity", "Place", "Review", "User"}
+    classes = ["BaseModel", "State", "City",
+               "Amenity", "Place", "Review", "User"]
 
     def do_quit(self, arg):
         """Exits the program"""
@@ -28,12 +28,13 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
         """command to create instance of basemodel"""
-        if arg == "" or arg is None:
+        argv = line.split()
+        if len(argv) == 0:
             print("** class name missing **")
-        elif arg not in storage.classes:
+        elif len(argv) >= 1 and argv[0] not in self.classes:
             print("** class doesn't exist **")
         else:
-            obj = storage.classes[arg]()
+            obj = eval("{}()".format(argv[0]))
             obj.save()
             print(obj.id)
 
