@@ -30,12 +30,11 @@
     opacity: 90%;
 }
 
-.locations, .amenities {
+.filters div {
     height: 100%;
     width: 25%;
     display: flex;
     flex-direction: column;
-    align-items: centre;
     justify-content: center;
     position: absolute;
 }
@@ -44,19 +43,13 @@
 }
 .amenities {
     left: 30%;
-    displace: flex;
-    position: absolute;
 }
-.locations h3, .amenities h3{
+.filters h3 {
     font-weight: 600;
     margin: 0;
 }
-
-.locations h4, .amenities h4 {
+.filters h4 {
     font-weight: 400;
     font-size: 14px;
     margin: 0;
-}
-.h3h4 {
-    width: 70%;
 }
