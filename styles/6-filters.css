@@ -5,6 +5,7 @@
     border: 1px solid #DDDDDD;
     border-radius: 4px;
     text-align: right;
+    position: relative;
 }
 section.filters button {
     font-size: 18px;
@@ -57,7 +58,7 @@ section.filters button:hover {
     padding-bottom: 10%;
     margin-top: 7%;
     cursor: pointer;
-    z-index: 1;
+
 }
 .popover li h2 {
     padding: 0;
