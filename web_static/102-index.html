@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic Meta -->
+    <meta charset="UTF-8">
+    <meta name="Author" content="Michael Kazembe">
+    <title>AirBnB Clone</title>
+
+    <!-- Link to External CSS Files -->
+    <link rel="stylesheet" href="./styles/102-common.css">
+    <link rel="stylesheet" href="./styles/102-filters.css">
+    <link rel="stylesheet" href="./styles/102-places.css">
+    <link rel="stylesheet" href="./styles/102-header.css">
+    <link rel="stylesheet" href="./styles/102-footer.css">
+    <link rel="icon" href="./images/icon.png" type="image/png">
+</head>
+<body>
+    <header>
+        <header>
+      <div class="mobile_nav">
+        <label for="main_check" class="main_nav_burger">|||</label>
+        <input type="checkbox" id="main_check" name="main_check" class="main_nav_check">
+          <nav>
+              <ul class="nav_bar_level1">
+                <li>
+                    <label for="second_check"><span>States</span></label>
+                    <input type="checkbox" name="second_check" id="second_check">
+                  <ul>
+                    <li><span>Arizona</span></li>
+                    <li><span>California</span></li>
+                  </ul>
+                  </li>
+                <li>
+                  <label for="third_check"><span>Amenities</span></label>
+                  <input type="checkbox" name="second_check" id="third_check">
+                  <ul>
+                    <li><span>Internet</span></li>
+                    <li><span>Tv</span></li>
+                    <li><span>Wifi</span></li>
+                    <li><span>Kitchen</span></li>
+                    <li><span>Iron</span></li>
+                  </ul>
+                  </li>
+              </ul>
+        </nav>
+      </div>
+    </header>
+    </header>
+    <div class="container">
+        <section class="filters">
+            <button type="button">Search</button>
+            <div class="locations">
+                <h3>States</h3>
+                <h4>California, Arizona...</h4>
+                <ul class="popover">
+                    <li>
+                        <h2>Arizona:</h2>
+                        <ul class="popover_list">
+                            <li>Lilongwe</li>
+                            <li>Nairobi</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h2>California:</h2>
+                        <ul class="popover_list">
+                            <li>San Francisco</li>
+                            <li>Los Alto</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="amenities">
+                <h3>Amenities</h3>
+                <h4>Internet, Kitchen...</h4>
+                <ul class="popover">
+                    <li>Internet</li>
+                    <li>TV</li>
+                    <li>Kitchen</li>
+                    <li>Jacuzzi</li>
+                </ul>
+            </div>
+        </section>
+        <section class="places">
+            <h1>Places</h1>
+            <div class="types">
+                <article>
+                    <h2>My Home</h2>
+                    <div class="price_by_night">
+                        <p>$80</p>
+                    </div>
+                    <div class="information">
+                        <div class="max_guest">
+                            <p>4 guests</p>
+                        </div>
+                        <div class="number_rooms">
+                            <p>3 rooms</p>
+                        </div>
+                        <div class="number_bathrooms">
+                            <p>2 bath</p>
+                        </div>
+                    </div>
+                    <div class="user">
+                        <p><b>Owner: </b>John Lenon</p>
+                    </div>
+                    <div class="description">
+                        <p>This is a lovely 1 bedroom and 1 bathroom apartment that can
+                            accommodate 2 people. It locates at the center of Shanghai
+                            and next to subway line 1, 1 stop to People Square, 2 stops to
+                            Bund, 3 stops to Jingan Temple.
+                        </p>
+                    </div>
+                    <div class="amenities">
+                        <h2>Amenities</h2>
+                        <ul>
+                            <li>
+                                <div class="places_amenities_pet_friendly"></div>
+                                Pet friendly
+                            </li>
+                            <li>
+                                <div class="places_amenities_tv"></div>
+                                TV
+                            </li>
+                            <li>
+                                <div class="places_amenities_wifi"></div>
+                                Wifi
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="reviews">
+                        <h2>2 Reviews</h2>
+                        <ul>
+                            <li>
+                                <h3>From Bob Dylan the 24th March 2023</h3>
+                                <p>John is an epic host. Nothing more I can say. 5 stars!</p>
+                            </li>
+                            <li>
+                                <h3>From Connor 4th August 2022</h3>
+                                <p>Booking this Airbnb was the best decision we made for our
+                                    vacation. The breathtaking views from the balcony and the
+                                    thoughtful amenities provided made our stay truly
+                                    unforgettable. Highly recommended for anyone seeking a
+                                    dreamy and luxurious escape.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article>
+                    <h2>Tiny House</h2>
+                    <div class="price_by_night">
+                        <p>$65</p>
+                    </div>
+                    <div class="information">
+                        <div class="max_guest">
+                            <p>4 guests</p>
+                        </div>
+                        <div class="number_rooms">
+                            <p>2 rooms</p>
+                        </div>
+                        <div class="number_bathrooms">
+                            <p>1 bath</p>
+                        </div>
+                    </div>
+                    <div class="user">
+                        <p><b>Owner: </b>Mphatso</p>
+                    </div>
+                    <div class="description">
+                        <p>Our place is a private, affordable stand-alone guest house
+                            centrally located just minutes from the French Quarters, downtown,
+                            The Fair Groundz (Jazz Fest), and City Park. The guest house is
+                            quaint, 400 square ft. with a full bath, mini kitchen, & living
+                            room. The extra high ceilings make the home feel more
+                            spacious. The sofa converts to a bed also. We have a hand-
+                            made counter area that adds character to the room and a
+                            great porch/deck to relax on and have a glass of Merlot.
+                        </p>
+                    </div>
+                    <div class="amenities">
+                        <h2>Amenities</h2>
+                        <ul>
+                            <li>
+                                <div class="places_amenities_pet_friendly"></div>
+                                Pet friendly
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="reviews">
+                        <h2>1 Review</h2>
+                        <ul>
+                            <li>
+                                <h3>From Maximus the 2nd December 2022</h3>
+                                <p>Mphatso is an epic host. Nothing more I can say. 5 stars!</p>
+                            </li>
+                            <li>
+                                <h3>From Connor 4th August 2022</h3>
+                                <p>Our Airbnb experience exceeded all expectations! The stylish
+                                    and cozy accommodation made us feel right at home, and the
+                                    host's hospitality was exceptional. We can't wait to book
+                                    this place again for our next trip!
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+                <article>
+                    <h2>A Suite</h2>
+                    <div class="price_by_night">
+                        <p>$180</p>
+                    </div>
+                    <div class="information">
+                        <div class="max_guest">
+                            <p>1 guest</p>
+                        </div>
+                        <div class="number_rooms">
+                            <p>3 rooms</p>
+                        </div>
+                        <div class="number_bathrooms">
+                            <p>2 bath</p>
+                        </div>
+                    </div>
+                    <div class="user">
+                        <p><b>Owner: </b>Chisomo</p>
+                    </div>
+                    <div class="description">
+                        <p>Our place is a private, affordable stand-alone guest house
+                            centrally located just minutes from the French Quarters, downtown,
+                            The Fair Groundz (Jazz Fest), and City Park. The guest house is
+                            quaint, 400 square ft. with a full bath, mini kitchen, & living
+                            room. The extra high ceilings make the home feel more
+                            spacious. The sofa converts to a bed also. We have a hand-
+                            made counter area that adds character to the room and a
+                            great porch/deck to relax on and have a glass of Merlot.
+                        </p>
+                    </div>
+                    <div class="amenities">
+                        <h2>Amenities</h2>
+                        <ul>
+                            <li>
+                                <div class="places_amenities_pet_friendly"></div>
+                                Pet friendly
+                            </li>
+                            <li>
+                                <div class="places_amenities_tv"></div>
+                                TV
+                            </li>
+                            <li>
+                                <div class="places_amenities_wifi"></div>
+                                Wifi
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="reviews">
+                        <h2>1 Review</h2>
+                        <ul>
+                            <li>
+                                <h3>From Micca Rashly the 15th June, 2023</h3>
+                                <p>Staying at this Airbnb was an absolute delight!
+                                    The host was incredibly welcoming and accommodating,
+                                    ensuring we had a comfortable and memorable stay.
+                                    The property itself was charming and well-maintained,
+                                    offering all the amenities we needed for a relaxing getaway.
+                                    The location was perfect, with easy access to local
+                                    attractions and dining options. We highly recommend
+                                    this Airbnb to anyone looking for a wonderful and
+                                    hassle-free experience.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </div>
+    <footer>
+        <p>Best School</p>
+    </footer>
+</body>
+</html>
